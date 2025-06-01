@@ -1,0 +1,82 @@
+[
+  {
+    "variedad": "Macabeo",
+    "pie": "R-110",
+    "clon": "33-ad",
+    "clonPie": 123,
+    "total": 9999,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Macabeo",
+    "pie": "R-110",
+    "clon": "33-ad",
+    "clonPie": 123,
+    "total": 20000,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Macabeo",
+    "pie": "Ru-140",
+    "clon": "88-bc",
+    "clonPie": 567,
+    "total": 4321,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Tempranillo",
+    "pie": "110-R",
+    "clon": "22-xy",
+    "clonPie": 789,
+    "total": 15000,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Garnacha",
+    "pie": "SO4",
+    "clon": "17-ef",
+    "clonPie": 101,
+    "total": 8500,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Macabeo",
+    "pie": "1103-P",
+    "clon": "45-jk",
+    "clonPie": 202,
+    "total": 12400,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Chardonnay",
+    "pie": "161-49",
+    "clon": "91-gh",
+    "clonPie": 333,
+    "total": 7600,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Verdejo",
+    "pie": "140-Ru",
+    "clon": "38-lm",
+    "clonPie": 404,
+    "total": 9200,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Macabeo",
+    "pie": "R-110",
+    "clon": "88-bc",
+    "clonPie": 567,
+    "total": 3100,
+    " isAvailable": true
+  },
+  {
+    "variedad": "Sauvignon Blanc",
+    "pie": "3309-C",
+    "clon": "55-np",
+    "clonPie": 808,
+    "total": 5000,
+    " isAvailable": true
+  }
+]
