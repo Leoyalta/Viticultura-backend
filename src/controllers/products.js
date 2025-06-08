@@ -1,13 +1,25 @@
 import createHttpError from 'http-errors';
 import * as productsService from '../services/product.js';
+import parsePaginationParams from '../utils/parsePaginationParams.js';
+import parseSortParams from '../utils/parseSortParams.js';
+import { sortFields } from '../db/models/Product.js';
 
 export const getAllProducatsController = async (req, res) => {
-  const productsData = await productsService.getAllProducts();
+  const { per_page, page } = parsePaginationParams(req.query);
+  const { sortBy, sortOrder } = parseSortParams({ ...req.query, sortFields });
+  console.log(req.query);
+
+  const products = await productsService.getAllProducts({
+    per_page,
+    page,
+    sortBy,
+    sortOrder,
+  });
 
   res.json({
     status: 200,
     message: 'Successfully founded products',
-    productsData,
+    products,
   });
 };
 
