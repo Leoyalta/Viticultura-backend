@@ -57,5 +57,15 @@ productSchema.post('save', handleServerError); //this  is a mongoose hook, just 
 productSchema.pre('findOneAndUpdate', setUpdateOptions);
 productSchema.post('findOneAndUpdate', handleServerError);
 const ProductCollection = model('product', productSchema);
-
+export const sortFields = [
+  'code',
+  'variety',
+  'clon',
+  'pie',
+  'clonPie',
+  'total',
+  'isAvailable',
+  'createdAt',
+  'updatedAt',
+];
 export default ProductCollection;
