@@ -7,7 +7,6 @@ import { sortFields } from '../db/models/Product.js';
 export const getAllProducatsController = async (req, res) => {
   const { per_page, page } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams({ ...req.query, sortFields });
-  console.log(req.query);
 
   const products = await productsService.getAllProducts({
     per_page,
