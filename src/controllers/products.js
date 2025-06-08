@@ -60,7 +60,7 @@ export const updateProductController = async (req, res) => {
   const { id } = req.params;
   const result = await productsService.updateProduct({ _id: id }, req.body);
 
-  if (!result) {
+  if (!result?.data.value) {
     throw createHttpError(404, `Product with id:${id} does not exist`);
   }
 

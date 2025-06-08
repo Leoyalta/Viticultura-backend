@@ -14,7 +14,6 @@ export const addProduct = (payload) => {
 
 export const updateProduct = async (filter, data, options = {}) => {
   const rowResult = await ProductCollection.findOneAndUpdate(filter, data, {
-    new: true,
     includeResultMetadata: true,
     ...options,
   });
