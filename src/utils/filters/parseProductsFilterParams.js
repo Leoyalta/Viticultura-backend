@@ -3,8 +3,9 @@ const parseProductsFilterParams = (query = {}) => {
   const { variety, pie, isAvailable, code } = query;
 
   const filter = {};
+  const normalizedVariety = normalizeFilterString(variety);
 
-  if (normalizeFilterString(variety)) filter.variety = variety;
+  if (normalizedVariety) filter.variety = normalizedVariety;
   if (pie) filter.pie = pie;
   if (code) filter.code = code;
   if (isAvailable !== undefined) {
