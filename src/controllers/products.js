@@ -3,16 +3,19 @@ import * as productsService from '../services/product.js';
 import parsePaginationParams from '../utils/parsePaginationParams.js';
 import parseSortParams from '../utils/parseSortParams.js';
 import { sortFields } from '../db/models/Product.js';
+import parseProductsFilterParams from '../utils/filters/parseProductsFilterParams.js';
 
 export const getAllProducatsController = async (req, res) => {
   const { per_page, page } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams({ ...req.query, sortFields });
+  const filter = parseProductsFilterParams(req.query);
 
   const products = await productsService.getAllProducts({
     per_page,
     page,
     sortBy,
     sortOrder,
+    filter,
   });
 
   res.json({

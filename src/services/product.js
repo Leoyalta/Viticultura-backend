@@ -7,14 +7,17 @@ export const getAllProducts = async ({
   page,
   sortBy = 'code',
   sortOrder = SORT_ORDER[0],
+  filter = {},
 }) => {
   const skip = (page - 1) * per_page;
-  const products = await ProductCollection.find()
+
+  const products = await ProductCollection.find(filter)
     .skip(skip)
     .limit(per_page)
     .sort({ [sortBy]: sortOrder });
-  const count = await ProductCollection.find().countDocuments();
-  console.log(count);
+
+  const count = await ProductCollection.countDocuments(filter);
+
   const paginationData = calculatePaginationData({ count, per_page, page });
 
   return {
