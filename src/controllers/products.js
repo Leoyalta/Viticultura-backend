@@ -10,7 +10,7 @@ export const getAllProducatsController = async (req, res) => {
   const { sortBy, sortOrder } = parseSortParams({ ...req.query, sortFields });
   const filter = parseProductsFilterParams(req.query);
 
-  const products = await productsService.getAllProducts({
+  const data = await productsService.getAllProducts({
     per_page,
     page,
     sortBy,
@@ -21,7 +21,7 @@ export const getAllProducatsController = async (req, res) => {
   res.json({
     status: 200,
     message: 'Successfully founded products',
-    products,
+    data,
   });
 };
 
