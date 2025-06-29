@@ -4,6 +4,9 @@ import cors from 'cors';
 import { env } from './utils/env.js';
 
 import productsRouter from './routers/products.js';
+import locationsRouter from './routers/locations.js';
+import clientsRouter from './routers/clients.js';
+
 import notFoundHandler from './middlewares/notFoundHandler.js';
 import errorHandler from './middlewares/errorHandler.js';
 
@@ -16,6 +19,8 @@ export const startServer = () => {
   app.use(express.json());
 
   app.use('/products', productsRouter);
+  app.use('/locations', locationsRouter);
+  app.use('/clients', clientsRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);

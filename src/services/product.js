@@ -1,7 +1,6 @@
 import ProductCollection from '../db/models/Product.js';
 import calculatePaginationData from '../utils/calculatePaginationData.js';
 import { SORT_ORDER } from '../constants/index.js';
-
 export const getAllProducts = async ({
   per_page,
   page,
