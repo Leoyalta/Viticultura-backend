@@ -42,7 +42,7 @@ export const updateClient = async (filter, data, options = {}) => {
   });
 
   return {
-    data: rowResult,
+    data: rowResult.value,
     isNew: Boolean(rowResult?.lastErrorObject?.upserted),
   };
 };

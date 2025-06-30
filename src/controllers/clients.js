@@ -64,7 +64,7 @@ export const upsertClientController = async (req, res) => {
   res.status(status).json({
     status,
     message: 'Client upsert successfully',
-    newProduct: isNew,
+    newClient: isNew,
     data,
   });
 };
@@ -84,7 +84,6 @@ export const updateClientController = async (req, res) => {
   });
 };
 
-// controllers/clients.js
 export const deleteClientController = async (req, res) => {
   const { id } = req.params;
   const deletedClient = await clientService.deleteClient({ _id: id });
