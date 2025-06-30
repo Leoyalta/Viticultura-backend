@@ -73,7 +73,7 @@ export const updateClientController = async (req, res) => {
   const { id } = req.params;
   const updatedClient = await clientService.updateClient({ _id: id }, req.body);
 
-  if (!updatedClient.data.value) {
+  if (!updatedClient.data) {
     throw createHttpError(404, `Client with id:${id} does not exist`);
   }
 
