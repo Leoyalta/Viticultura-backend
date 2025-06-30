@@ -8,7 +8,7 @@ import isValidId from '../middlewares/isValidId.js';
 
 const clientsRouter = Router();
 
-clientsRouter.get('/', ctrlWrapper(clientControllers.getClientByIdController));
+clientsRouter.get('/', ctrlWrapper(clientControllers.getAllClientsController));
 
 clientsRouter.get(
   '/:id',
