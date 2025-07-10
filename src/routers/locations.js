@@ -5,7 +5,7 @@ import validateBody from '../utils/validateBody.js';
 import { locationsAddSchem } from '../validation/locations.js';
 
 import isValidObjectIdQuery from '../middlewares/isValidOwner.js';
-// import isValidId from '../middlewares/isValidId.js';
+import isValidId from '../middlewares/isValidId.js';
 
 import * as locationControllers from '../controllers/locations.js';
 
@@ -21,6 +21,12 @@ locationsRouter.post(
   '/',
   validateBody(locationsAddSchem),
   ctrlWrapper(locationControllers.addLocationController),
+);
+
+locationsRouter.delete(
+  '/:id',
+  isValidId,
+  ctrlWrapper(locationControllers.deleteLocationController),
 );
 
 export default locationsRouter;

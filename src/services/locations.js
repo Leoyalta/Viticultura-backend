@@ -14,3 +14,7 @@ export const getAllLocations = async ({ owner } = {}) => {
 export const addLocation = (payload) => {
   return LocationCollection.create(payload);
 };
+
+export const deleteLocation = (filter) => {
+  return LocationCollection.findOneAndDelete(filter);
+};
