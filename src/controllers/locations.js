@@ -1,4 +1,4 @@
-// import createHttpError from 'http-errors';
+import createHttpError from 'http-errors';
 import * as locationsService from '../services/locations.js';
 
 export const getAllLocationsController = async (req, res) => {
@@ -22,3 +22,25 @@ export const addLocationController = async (req, res) => {
     data,
   });
 };
+
+export const deleteLocationController = async (req, res) => {
+  const { id } = req.params;
+
+  const deletedLocation = await locationsService.deleteLocation({ _id: id });
+
+  if (!deletedLocation) {
+    throw createHttpError(404, `Location with id:${id} not found`);
+  }
+  res.status(204).send();
+};
+
+// export const deleteClientController = async (req, res) => {
+//   const { id } = req.params;
+//   const deletedClient = await clientService.deleteClient({ _id: id });
+
+//   if (!deletedClient) {
+//     throw createHttpError(404, `Client with id:${id} not found`);
+//   }
+
+//   res.status(204).send();
+// };
