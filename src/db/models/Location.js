@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 // import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
 import { locationTypeList } from '../../constants/locations.js';
 import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
-import './Clients.js';
+import './Client.js';
 
 const locationSchema = new Schema(
   {

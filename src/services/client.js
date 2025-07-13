@@ -1,11 +1,12 @@
-import ClientCollection from '../db/models/Clients.js';
+import ClientCollection from '../db/models/Client.js';
 import calculatePaginationData from '../utils/calculatePaginationData.js';
+import { SORT_ORDER } from '../constants/index.js';
 
 export const getAllClients = async ({
   per_page,
   page,
   sortBy = 'secondName',
-  sortOrder = 'desc',
+  sortOrder = SORT_ORDER[0],
   filter = {},
 }) => {
   const skip = (page - 1) * per_page;

@@ -1,8 +1,8 @@
-import * as clientService from '../services/clients.js';
+import * as clientService from '../services/client.js';
 import parsePaginationParams from '../utils/parsePaginationParams.js';
 import parseSortParams from '../utils/parseSortParams.js';
 import parseClientsFilterParams from '../utils/filters/parseClientsFilterParams.js';
-import { ClientSortFields } from '../db/models/Clients.js';
+import { ClientSortFields } from '../db/models/Client.js';
 import createHttpError from 'http-errors';
 
 export const getAllClientsController = async (req, res) => {

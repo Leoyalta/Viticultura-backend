@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import * as locationsService from '../services/locations.js';
+import * as locationsService from '../services/location.js';
 
 export const getAllLocationsController = async (req, res) => {
   const owner = req.query.owner;
