@@ -41,6 +41,10 @@ export const productAddSchem = Joi.object({
     'any.required': 'El campo "total" es obligatorio.',
   }),
 
+  stock: Joi.number().optional(),
+
+  reserved: Joi.number().optional(),
+
   isAvailable: Joi.boolean().messages({
     'boolean.base':
       'El campo "isAvailable" debe ser un valor booleano (true o false).',
@@ -80,6 +84,8 @@ export const productPatchSchem = Joi.object({
     'number.base': 'El campo "total" debe ser un número.',
     'any.required': 'El campo "total" es obligatorio.',
   }),
+  stock: Joi.number().optional(),
+  reserved: Joi.number().optional(),
 
   isAvailable: Joi.boolean().messages({
     'boolean.base':

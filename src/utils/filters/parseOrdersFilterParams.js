@@ -1,5 +1,5 @@
 const parseOrdersFilterParams = (query = {}) => {
-  const { client, product, plantingRequested, plantingDate } = query;
+  const { client, product, plantingRequested, plantingDate, status } = query;
 
   const filter = {};
 
@@ -13,6 +13,7 @@ const parseOrdersFilterParams = (query = {}) => {
   if (plantingDate) {
     filter.plantingDate = new Date(plantingDate);
   }
+  if (status) filter.status = status;
 
   return filter;
 };

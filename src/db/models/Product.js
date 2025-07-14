@@ -4,7 +4,11 @@ import {
   pieVarietyList,
   codeRegexp,
 } from '../../constants/products.js';
-import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
+import {
+  handleServerError,
+  setUpdateOptions,
+  attachStockHook,
+} from './mongooseHooks.js';
 
 const productSchema = new Schema(
   {
@@ -45,6 +49,16 @@ const productSchema = new Schema(
       type: Number,
       required: [true, 'El campo "total" es obligatorio.'],
     },
+    stock: {
+      type: Number,
+      required: false,
+      default: undefined,
+    },
+    reserved: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
     isAvailable: {
       type: Boolean,
       required: [true, 'El campo "isAvailable" es obligatorio.'],
@@ -53,8 +67,9 @@ const productSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
-productSchema.post('save', handleServerError); //this  is a mongoose hook, just to remember:)
+productSchema.pre('save', attachStockHook);
 productSchema.pre('findOneAndUpdate', setUpdateOptions);
+productSchema.post('save', handleServerError);
 productSchema.post('findOneAndUpdate', handleServerError);
 const ProductCollection = model('product', productSchema);
 export const sortFields = [

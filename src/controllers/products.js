@@ -66,7 +66,7 @@ export const upsertProductController = async (req, res) => {
     status,
     message: 'Product upsert successfully',
     newProduct: isNew,
-    data,
+    data: data.value,
   });
 };
 
@@ -81,7 +81,7 @@ export const updateProductController = async (req, res) => {
   res.json({
     status: 200,
     message: 'Product updated successfully ',
-    data: result.data,
+    data: result.data.value,
   });
 };
 
