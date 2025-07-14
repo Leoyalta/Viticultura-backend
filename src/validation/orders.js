@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { allowedOrderStatuses } from '../constants/orders.js';
 
 export const orderAddSchema = Joi.object({
   client: Joi.string().hex().length(24).required().messages({
@@ -36,6 +37,12 @@ export const orderAddSchema = Joi.object({
       'date.greater': 'La fecha de plantación debe ser posterior a hoy.',
       'any.required': 'Debe proporcionar una fecha si se solicita plantación.',
     }),
+  status: Joi.string()
+    .valid(...allowedOrderStatuses)
+    .default('pending')
+    .messages({
+      'any.only': 'El campo "status" debe ser uno de los valores permitidos.',
+    }),
 });
 
 export const orderPatchSchema = Joi.object({
@@ -68,5 +75,11 @@ export const orderPatchSchema = Joi.object({
     .messages({
       'date.base': 'El campo "plantingDate" debe ser una fecha válida.',
       'date.greater': 'La fecha de plantación debe ser posterior a hoy.',
+    }),
+  status: Joi.string()
+    .valid(...allowedOrderStatuses)
+    .default('pending')
+    .messages({
+      'any.only': 'El campo "status" debe ser uno de los valores permitidos.',
     }),
 });

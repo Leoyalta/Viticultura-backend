@@ -8,3 +8,10 @@ export const setUpdateOptions = function (next) {
   this.options.runValidators = true;
   next();
 };
+
+export function attachStockHook(next) {
+  if (this.isNew && this.stock === undefined) {
+    this.stock = this.total;
+  }
+  next();
+}

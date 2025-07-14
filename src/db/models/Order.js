@@ -1,11 +1,12 @@
 import { Schema, model } from 'mongoose';
 import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
+import { allowedOrderStatuses } from '../../constants/orders.js';
 
 const orderSchema = new Schema(
   {
     client: {
       type: Schema.Types.ObjectId,
-      ref: 'client',
+      ref: 'Client',
       required: [true, 'El cliente es obligatorio.'],
     },
     product: {
@@ -28,6 +29,15 @@ const orderSchema = new Schema(
         return this.plantingRequested;
       },
     },
+    status: {
+      type: String,
+      enum: {
+        values: allowedOrderStatuses,
+        message: 'Estado inválido.',
+      },
+      default: 'pending',
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true },
 );
@@ -36,5 +46,5 @@ orderSchema.post('save', handleServerError);
 orderSchema.pre('findOneAndUpdate', setUpdateOptions);
 orderSchema.post('findOneAndUpdate', handleServerError);
 
-const OrderCollection = model('order', orderSchema);
+const OrderCollection = model('Order', orderSchema);
 export default OrderCollection;

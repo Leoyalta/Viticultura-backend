@@ -12,6 +12,8 @@ export const getAllOrders = async ({
   const skip = (page - 1) * per_page;
 
   const orders = await OrderCollection.find(filter)
+    .populate('client', 'name secondName phone')
+    .populate('product', 'code variety pie')
     .skip(skip)
     .limit(per_page)
     .sort({ [sortBy]: sortOrder });
@@ -24,7 +26,7 @@ export const getAllOrders = async ({
     page,
     per_page,
     orders,
-    totalProducts: count,
+    totalOrders: count,
     ...paginationData,
   };
 };
