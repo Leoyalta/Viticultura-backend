@@ -15,6 +15,13 @@ ordersRouter.post(
   ctrlWrapper(orderControllers.addOrderController),
 );
 ordersRouter.get('/', ctrlWrapper(orderControllers.getAllOrdersController));
+
+ordersRouter.get(
+  '/:id',
+  isValidId,
+  ctrlWrapper(orderControllers.getOrderByIdController),
+);
+
 ordersRouter.put(
   '/:id',
   isValidId,

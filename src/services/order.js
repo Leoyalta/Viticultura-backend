@@ -30,6 +30,10 @@ export const getAllOrders = async ({
     ...paginationData,
   };
 };
+
+export const getOrder = (id) => {
+  return OrderCollection.findById(id);
+};
 export const addOrder = (payload) => {
   return OrderCollection.create(payload);
 };
