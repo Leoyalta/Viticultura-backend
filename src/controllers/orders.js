@@ -24,6 +24,21 @@ export const getAllOrdersController = async (req, res) => {
   });
 };
 
+export const getOrderByIdController = async (req, res) => {
+  const { id } = req.params;
+  const order = await orderService.getOrder(id);
+
+  if (!order) {
+    throw createHttpError(404, `Order with id:${id} does not exist`);
+  }
+
+  res.json({
+    status: 200,
+    message: `Order with id:${id} is found`,
+    order,
+  });
+};
+
 export const addOrderController = async (req, res) => {
   const data = await orderService.addOrder(req.body);
 
