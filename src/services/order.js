@@ -32,7 +32,9 @@ export const getAllOrders = async ({
 };
 
 export const getOrder = (id) => {
-  return OrderCollection.findById(id);
+  return OrderCollection.findById(id)
+    .populate('client', 'name secondName phone')
+    .populate('product', 'code variety pie');
 };
 export const addOrder = (payload) => {
   return OrderCollection.create(payload);
