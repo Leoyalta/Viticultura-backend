@@ -61,7 +61,6 @@ const clientSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
-// Індекс для адреси (опціонально, якщо шукаємо по координатах)
 clientSchema.index({ 'address.location': '2dsphere' });
 
 clientSchema.post('save', handleServerError);

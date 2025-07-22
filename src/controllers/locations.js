@@ -33,14 +33,3 @@ export const deleteLocationController = async (req, res) => {
   }
   res.status(204).send();
 };
-
-// export const deleteClientController = async (req, res) => {
-//   const { id } = req.params;
-//   const deletedClient = await clientService.deleteClient({ _id: id });
-
-//   if (!deletedClient) {
-//     throw createHttpError(404, `Client with id:${id} not found`);
-//   }
-
-//   res.status(204).send();
-// };
