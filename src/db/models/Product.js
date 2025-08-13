@@ -5,9 +5,9 @@ import {
   codeRegexp,
 } from '../../constants/products.js';
 import {
-  handleServerError,
   setUpdateOptions,
   attachStockHook,
+  handleSaveError,
 } from './mongooseHooks.js';
 
 const productSchema = new Schema(
@@ -63,14 +63,19 @@ const productSchema = new Schema(
       type: Boolean,
       required: [true, 'El campo "isAvailable" es obligatorio.'],
     },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true },
 );
 
 productSchema.pre('save', attachStockHook);
 productSchema.pre('findOneAndUpdate', setUpdateOptions);
-productSchema.post('save', handleServerError);
-productSchema.post('findOneAndUpdate', handleServerError);
+productSchema.post('save', handleSaveError);
+productSchema.post('findOneAndUpdate', handleSaveError);
 const ProductCollection = model('product', productSchema);
 export const sortFields = [
   'code',

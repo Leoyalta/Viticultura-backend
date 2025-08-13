@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import logger from './middlewares/logger.js';
+// import logger from './middlewares/logger.js';
 import { env } from './utils/env.js';
+import cookieParser from 'cookie-parser';
 
 import productsRouter from './routers/products.js';
 import locationsRouter from './routers/locations.js';
@@ -10,15 +11,18 @@ import ordersRouter from './routers/orders.js';
 
 import notFoundHandler from './middlewares/notFoundHandler.js';
 import errorHandler from './middlewares/errorHandler.js';
+import authRouter from './routers/auth.js';
 
 export const startServer = () => {
   const app = express();
 
-  app.use(logger);
+  // app.use(logger);
 
   app.use(cors());
   app.use(express.json());
+  app.use(cookieParser());
 
+  app.use('/auth', authRouter);
   app.use('/products', productsRouter);
   app.use('/locations', locationsRouter);
   app.use('/clients', clientsRouter);

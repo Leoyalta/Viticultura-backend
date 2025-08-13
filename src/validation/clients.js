@@ -41,8 +41,8 @@ export const clientAddSchema = Joi.object({
 });
 
 export const clientPatchSchema = Joi.object({
-  name: Joi.string(),
-  secondName: Joi.string(),
+  name: Joi.string().trim().min(2),
+  secondName: Joi.string().trim().min(2),
   phone: Joi.string().pattern(phoneRegExp).messages({
     'string.pattern.base':
       'El campo "phone" debe tener el formato +34 600 000 000.',
