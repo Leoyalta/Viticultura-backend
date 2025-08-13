@@ -1,12 +1,12 @@
 import { Schema, model } from 'mongoose';
-import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
+import { handleSaveError, setUpdateOptions } from './mongooseHooks.js';
 import { allowedOrderStatuses } from '../../constants/orders.js';
 
 const orderSchema = new Schema(
   {
     client: {
       type: Schema.Types.ObjectId,
-      ref: 'Client',
+      ref: 'client',
       required: [true, 'El cliente es obligatorio.'],
     },
     product: {
@@ -42,9 +42,9 @@ const orderSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
-orderSchema.post('save', handleServerError);
+orderSchema.post('save', handleSaveError);
 orderSchema.pre('findOneAndUpdate', setUpdateOptions);
-orderSchema.post('findOneAndUpdate', handleServerError);
+orderSchema.post('findOneAndUpdate', handleSaveError);
 
 const OrderCollection = model('Order', orderSchema);
 export default OrderCollection;

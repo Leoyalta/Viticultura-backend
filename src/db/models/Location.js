@@ -1,14 +1,13 @@
 import { Schema, model } from 'mongoose';
-// import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
 import { locationTypeList } from '../../constants/locations.js';
-import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
+import { handleSaveError, setUpdateOptions } from './mongooseHooks.js';
 import './Client.js';
 
 const locationSchema = new Schema(
   {
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'Client',
+      ref: 'client',
       required: true,
     },
     locationName: {
@@ -32,9 +31,9 @@ const locationSchema = new Schema(
 
 locationSchema.index({ geometry: '2dsphere' });
 
-locationSchema.post('save', handleServerError);
+locationSchema.post('save', handleSaveError);
 locationSchema.pre('findOneAndUpdate', setUpdateOptions);
-locationSchema.post('findOneAndUpdate', handleServerError);
+locationSchema.post('findOneAndUpdate', handleSaveError);
 
-const LocationCollection = model('Location', locationSchema);
+const LocationCollection = model('location', locationSchema);
 export default LocationCollection;

@@ -10,17 +10,23 @@ export const getAllProducatsController = async (req, res) => {
   const { sortBy, sortOrder } = parseSortParams({ ...req.query, sortFields });
   const filter = parseProductsFilterParams(req.query);
 
+  const finalFilter = { ...filter };
+
+  if (req.query.own === 'true') {
+    finalFilter.userId = req.user.id;
+  }
+
   const data = await productsService.getAllProducts({
     per_page,
     page,
     sortBy,
     sortOrder,
-    filter,
+    filter: finalFilter,
   });
 
   res.json({
     status: 200,
-    message: 'Successfully founded products',
+    message: 'Successfully retrieved products',
     data,
   });
 };
@@ -41,7 +47,9 @@ export const getProductByIdController = async (req, res) => {
 };
 
 export const addProductController = async (req, res) => {
-  const data = await productsService.addProduct(req.body);
+  const { id: userId } = req.user;
+
+  const data = await productsService.addProduct({ ...req.body, userId });
 
   res.json({
     status: 201,

@@ -6,8 +6,11 @@ import validateBody from '../utils/validateBody.js';
 import isValidId from '../middlewares/isValidId.js';
 
 import { productAddSchem, productPatchSchem } from '../validation/products.js';
+import authenticate from '../middlewares/authenticate.js';
 
 const productsRouter = Router();
+
+productsRouter.use(authenticate);
 
 productsRouter.get(
   '/',

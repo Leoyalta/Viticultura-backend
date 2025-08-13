@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { handleServerError, setUpdateOptions } from './mongooseHooks.js';
+import { handleSaveError, setUpdateOptions } from './mongooseHooks.js';
 import { phoneRegExp, emailRegExp } from '../../constants/clients.js';
 
 const clientSchema = new Schema(
@@ -63,11 +63,11 @@ const clientSchema = new Schema(
 
 clientSchema.index({ 'address.location': '2dsphere' });
 
-clientSchema.post('save', handleServerError);
+clientSchema.post('save', handleSaveError);
 clientSchema.pre('findOneAndUpdate', setUpdateOptions);
-clientSchema.post('findOneAndUpdate', handleServerError);
+clientSchema.post('findOneAndUpdate', handleSaveError);
 
-const ClientCollection = model('Client', clientSchema);
+const ClientCollection = model('client', clientSchema);
 
 export const ClientSortFields = ['name', 'secondName', 'phone', 'email'];
 export default ClientCollection;
